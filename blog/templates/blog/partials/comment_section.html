@@ -1,0 +1,103 @@
+{% load custom_filters %}
+<form hx-post="{{ request.path }}"
+      hx-target="#comment-section"
+      hx-swap="innerHTML"
+      id="comment-form"
+      novalidate
+>
+    {% csrf_token %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <p id="msg">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% if comments %}
+        <h3>Komentari ({{ comments.count }})</h3>
+    {% else %}
+        <h3>Komentari (0)</h3>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        {{ comment_form.content }}
+        {% if comment_form.content.errors %}
+            {% for error in comment_form.content.errors %}
+            	<p class="error-msg">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+    {% else %}
+        {{ comment_form.content }}
+        {% if comment_form.content.errors %}
+            {% for error in comment_form.content.errors %}
+            	<p class="error-msg">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <p class="input-field">
+            {{ comment_form.name }}
+        </p>
+        {% if comment_form.name.errors %}
+            {% for error in comment_form.name.errors %}
+            	<p class="error-msg">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <p class="input-field">
+            {{ comment_form.email }}
+        </p>
+        {% if comment_form.email.errors %}
+            {% for error in comment_form.email.errors %}
+                <p class="error-msg">{{ error }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+
+    <button type="submit">Pošalji</button>
+</form>
+
+<hr>
+
+{% if comments %}
+    <section>
+        {% for comment in comments %}
+            <article class="single-comment">
+
+                <div>
+                    {% if blogpost.author == comment.author %}
+                    	<address style="display: inline-block" class="comment-author comment-author-author">
+                            {{ comment.name }} <span class="author-symbol">(autor)</span>
+                        </address>
+                    {% else %}
+                        <address style="display: inline-block" class="comment-author">
+                            {{ comment.name }}
+                        </address>
+                    {% endif %}
+                    <pre> |</pre>
+                    <small>
+                        pre
+                        <time datetime="{{ comment.created_on|date:'d-m-y' }}">
+                            {{ comment.created_on|custom_naturaltime }}
+                        </time>
+                    </small>
+                </div>
+                <p>{{ comment.content }}</p>
+                <hr>
+            </article>
+        {% endfor %}
+    </section>
+{% else %}
+    <p class="no-comment">Nema komentara</p>
+{% endif %}
+
+
+
+{#<script>#}
+{#    document.addEventListener('htmx:afterSwap', () => {#}
+{#        const message = document.getElementById('msg');#}
+{#        setTimeout(() => {#}
+{#            message.style.display = 'none';#}
+{#        }, 3000);#}
+{#    });#}
+{#</script>#}

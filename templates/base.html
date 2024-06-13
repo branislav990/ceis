@@ -1,0 +1,116 @@
+<!doctype html>
+{% load static %}
+<html lang="sr-Latn">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="author" content="Branislav Dimitrov">
+    
+        {% block meta %}
+            <meta name="description"
+              content="Caribrodski ekološki informacioni sistem (CEIS) je platforma za prikupljanje i deljenje informacija,
+                       podataka i literature o zaštiti prirode i biodiverziteta,
+                       kao i monitoringu životne sredine u opštini Dimitrovgrad.">
+            <meta name="robots" content="index, follow">
+    
+            <meta property="og:title" content="Caribrodski ekološki informacioni sistem">
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="https://ceis.pythonanywhere.com">
+            <meta property="og:image" content="{% static 'images/ceis_og.jpg' %}">
+        {% endblock %}
+        
+
+        <title>
+            {% block title %}
+                Caribrodski ekološki informacioni sistem
+            {% endblock %}
+        </title>
+
+        <link rel="icon" type="image/png" href="{% static 'images/favicon_ceis.png' %}">
+    
+        {#    HTMX    #}
+        <script src="https://unpkg.com/htmx.org@1.9.12/dist/htmx.js" integrity="sha384-qbtR4rS9RrUMECUWDWM2+YGgN3U4V4ZncZ0BvUcg9FGct0jqXz3PUdVpU1p0yrXS" crossorigin="anonymous"></script>
+{#        <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/response-targets.js"></script>#}
+
+        <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/styles/blog_detail.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/styles/blog_list.css' %}">
+    
+        <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Buenard' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Madimi One' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Arima' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Abhaya Libre' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Labrada' rel='stylesheet'>
+    </head>
+    <body>
+        <div class="container">
+            <header class="header">
+                <nav class="navbar">
+                    <a href="{% url 'blog:blog-post-list' %}" class="nav-logo">
+                        <img src="{% static 'images/ceis_logo_2.png' %}" alt="CEIS logo" height="60">
+                    </a>
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="{% url 'blog:blog-post-list' %}" class="nav-link nav-link-active">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link nav-link-inactive">Biblioteka</span>
+                        </li>
+
+                        <li class="nav-item">
+                            <span class="nav-link nav-link-inactive">Zaštita prirode</span>
+                        </li>
+                        <li class="nav-item">
+                            <span class="nav-link nav-link-inactive">Kontakt</span>
+                        </li>
+                    </ul>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+            </header>
+
+            <div>
+                {% block content %}
+                {% endblock %}
+            </div>
+
+            <footer>
+                <div class="footer-content">
+                    <span>
+                        <img src="{% static 'images/ceis_logo_2.png' %}" alt="CEIS logo" height="40">
+                    </span>
+                    <small>&copy; 2024 Branislav Dimitrov</small>
+                </div>
+            </footer>
+        </div>
+
+
+        <script>
+           const hamburger = document.querySelector(".hamburger");
+            const navMenu = document.querySelector(".nav-menu");
+            
+            hamburger.addEventListener("click", mobileMenu);
+            
+            function mobileMenu() {
+                hamburger.classList.toggle("active");
+                navMenu.classList.toggle("active");
+            }
+            
+            
+            
+            const navLink = document.querySelectorAll(".nav-link");
+
+            navLink.forEach(n => n.addEventListener("click", closeMenu));
+            
+            function closeMenu() {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+}
+        </script>
+    </body>
+</html>

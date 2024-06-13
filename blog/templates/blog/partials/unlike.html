@@ -1,0 +1,11 @@
+{% load static %}
+
+<span class="popularity-count popularity-count-likes">{{ blogpost.likes }}</span>
+<img src="{% static 'blog/images/heart_admin.png' %}"
+     alt="Sviđa ti se"
+     hx-post="{% url 'blog:unlike' blogpost.pk %}"
+     hx-target="#like-count"
+     hx-swap="innerHTML"
+     hx-trigger="click"
+     style="cursor: pointer"
+>

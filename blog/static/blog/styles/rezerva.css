@@ -1,0 +1,21 @@
+/*@media (max-width: 576px) { !* Small screens *!*/
+/*    .container.custom-container {*/
+/*        margin-inline: 0;*/
+/*        padding-inline: 0;*/
+/*    }*/
+
+/*    .row {*/
+/*        margin-inline: 0;*/
+/*    }*/
+/*}*/
+
+/*@media (min-width: 577px) and (max-width: 768px) { !* Medium screens *!*/
+/*    .container.custom-container {*/
+/*        margin-inline: 10px;*/
+/*        padding-inline: 10px;*/
+/*    }*/
+
+/*    .row {*/
+/*        margin-inline: 0;*/
+/*    }*/
+/*}*/

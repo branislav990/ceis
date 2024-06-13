@@ -1,0 +1,11 @@
+{% load static %}
+
+<span class="popularity-count popularity-count-likes">{{ blogpost.likes }}</span>
+<img src="{% static 'blog/images/heart_empty.png' %}"
+     alt="Lajkuj"
+     hx-post="{% url 'blog:like' blogpost.pk %}"
+     hx-target="#like-count"
+     hx-swap="innerHTML"
+     hx-trigger="click"
+     style="cursor: pointer"
+>

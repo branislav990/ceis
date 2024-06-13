@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+{% block title %}CEIS Blog{% endblock %}
+
+{% block content %}
+    <div class="blog-list-header">
+        <blockquote>
+            <p>
+                "Tek dubokim upoznavanjem i proučavanjem prirode naše zemlje pokazaćete koliko volite i poštujete svoju
+                otadžbinu." - Josif Pančić
+            </p>
+        </blockquote>
+    </div>
+    <main class="blog-list-main">
+
+        {% if blogpost_list %}
+            {% for blogpost in blogpost_list %}
+            	<article class="blog-list-article">
+                    {% if blogpost.cover_image %}
+                        <a href="{% url 'blog:blog-post-detail' blogpost.url_identifier %}">
+                            <img
+                                    src="{{ blogpost.cover_image.url }}"
+                                    alt="{{ blogpost.url_identifier|replace:'-, ' }}"
+                            >
+                        </a>
+                    {% endif %}
+
+                    <section>
+                        <a href="{% url 'blog:blog-post-detail' blogpost.url_identifier %}">
+                            <h2>{{ blogpost.title }}</h2>
+                        </a>
+                        <p>{{ blogpost.snippet }}</p>
+                    </section>
+                </article>
+            {% endfor %}
+        {% else %}
+            <h2 class="no-blog-posts">Nema nijednog članka</h2>
+        {% endif %}
+    </main>
+{% endblock %}

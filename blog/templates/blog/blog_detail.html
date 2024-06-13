@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block meta %}
+    <meta name="description"
+      content="{{ blogpost.snippet }}">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="{{ blogpost.title }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ request.path }}">
+    <meta property="og:image" content="{{ blogpost.cover_image.url }}">
+{% endblock %}
+
+{% block title %}
+    {{ blogpost.title }}
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <main class="blog-detail-wrapper">
+        <section class="blog-header">
+            <h1 class="blog-title">{{ blogpost.title }}</h1>
+            <address class="blog-author">
+                <span style="font-style: normal">Autor</span>
+                <a href="#author-bio">
+                    <strong>{{ blogpost.author.first_name }} {{ blogpost.author.last_name }}</strong>
+                </a>
+            </address>
+
+            {% if blogpost.cover_image %}
+                <span>
+                    <img id="blog-cover-img" class="cover-img" src="{{ blogpost.cover_image.url }}" alt="Cover image">
+                </span>
+            {% endif %}
+        </section>
+
+        <section class="blog-content-wrapper">
+            <div id="blog-post-content">{{ content | safe }}</div>
+{#            <br>#}
+            <p class="blogpost-created-on">
+                Objavljeno <time datetime="{{ blogpost.created_on|date:'d-m-y' }}" id="blogpost-date"></time>
+            </p>
+        </section>
+
+        <div class="hr-wrapper">
+            <hr>
+        </div>
+
+        <section class="views-likes">
+            <div class="view-count">
+                <img src="{% static 'blog/images/views-icon.png' %}" alt="Views count icon">
+                <span class="popularity-count popularity-count-views">{{ blogpost.views }}</span>
+            </div>
+
+            <div id="like-count">
+                {% if user.is_authenticated and user == blogpost.author %}
+                    <span class="popularity-count popularity-count-likes">{{ blogpost.likes }}</span>
+                    <img src="{% static 'blog/images/heart_admin.png' %}" alt="Lajkovi">
+                {% else %}
+                    {% if liked %}
+                        {% include 'blog/partials/unlike.html' %}
+
+                    {% else %}
+                        {% include 'blog/partials/like.html' %}
+
+                    {% endif %}
+                {% endif %}
+            </div>
+        </section>
+
+        <div class="comment-wrapper">
+            <section id="comment-section">
+                {% include 'blog/partials/comment_section.html' %}
+            </section>
+        </div>
+
+        <aside class="blog-aside">
+            <section id="author-bio">
+{#                <img src="{% static 'blog/images/Branislav_Dimitrov.jpg' %}" alt="">#}
+                <img src="{{ blogpost.author.profile.profile_picture.url }}"
+                     alt="{{ blogpost.author.first_name }} {{ blogpost.author.last_name }}"
+                >
+                <div class="blog-author-details">
+                    <h2>{{ blogpost.author.first_name }} {{ blogpost.author.last_name }}</h2>
+                    <div>
+                        {{ blogpost.author.profile.bio | safe }}
+                    </div>
+                </div>
+            </section>
+{#            <hr>#}
+            <section class="recommended-links">
+                <h2>Preporučeni linkovi</h2>
+                <ul>
+                    <li>
+                        <a href="https://zzps.rs/" target="_blank">
+                            <img
+                                    src="https://zzps.rs/wp-content/uploads/2022/08/Logo-bela-slova-srp.png"
+                                    alt="Zavod za zaštitu prirode Srbije"
+                            >
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://nhmbeo.rs/" target="_blank">
+                            <img
+                                    src="https://nhmbeo.rs/wp-content/uploads/2021/04/nhmbeo-logo.png"
+                                    alt="Prirodnjački muzej u Beogradu"
+                            >
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://udimitrovgradu.rs/" target="_blank">
+                            <img
+                                    src="{% static 'blog/images/toc.png' %}"
+                                    alt="Turistička organizacija Caribrod"
+                            >
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://rtcaribrod.rs/sr/" target="_blank">
+                            <img
+{#                                    src="{% static 'blog/images/rtc_logo.png' %}"#}
+                                    src="{% static 'blog/images/RTC-Logo-100.png' %}"
+                                    alt="Radio televizija Caribrod"
+                                    class="rtc-logo"
+                                    title="Radio Televizija Caribrod"
+                            >
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+    </main>
+
+    <script>
+        const blogContent = document.getElementById('blog-post-content');
+        const blogLinks = blogContent.getElementsByTagName('a');
+        for (let link of blogLinks) {
+            link.setAttribute('target', '_blank');
+        }
+
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const blogpostDateEl = document.getElementById('blogpost-date');
+            const blogPostDate = blogpostDateEl.getAttribute('datetime');
+
+            const dayNum = blogPostDate.split('-')[0];
+            const day = dayNum[0] === '0' ? dayNum.slice(1, dayNum.length) : dayNum;
+
+            const monthNum = blogPostDate.split('-')[1];
+            let month;
+            switch (monthNum) {
+                case '01':
+                    month = 'januara';
+                    break;
+                case '02':
+                    month = 'februara';
+                    break;
+                case '03':
+                    month = 'marta';
+                    break;
+                case '04':
+                    month = 'aprila';
+                    break;
+                case '05':
+                    month = 'maja';
+                    break;
+                case '06':
+                    month = 'juna';
+                    break;
+                case '07':
+                    month = 'jula';
+                    break;
+                case '08':
+                    month = 'avgusta';
+                    break;
+                case '09':
+                    month = 'septembra';
+                    break;
+                case '10':
+                    month = 'oktobra';
+                    break;
+                case '11':
+                    month = 'novembra';
+                    break
+                case '12':
+                    month = 'decembra';
+                    break;
+            }
+
+            const yearNum = blogPostDate.split('-')[2];
+            const year = `20${yearNum}`
+
+            blogpostDateEl.textContent = `${day}. ${month} ${year}.`
+        });
+    </script>
+{% endblock %}
