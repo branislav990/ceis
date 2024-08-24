@@ -27,6 +27,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("blog/", include("blog.urls")),
     path("", views.return_to_blog),
+    path("biblioteka/", include("booklibrary.urls")),
 ]
 
 urlpatterns += [

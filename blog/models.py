@@ -7,13 +7,13 @@ from django_ckeditor_5.fields import CKEditor5Field
 class BlogPost(models.Model):
     title = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
-    cover_image = models.ImageField(upload_to="cover_img/", null=True, blank=True)
+    cover_image = models.ImageField(upload_to="blog/cover_img/", null=True, blank=True)
     content = CKEditor5Field("Text", config_name="extends")
     snippet = models.TextField(default='')
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
-    views = models.IntegerField(default=0, validators=[MinValueValidator(0)])
-    likes = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    views = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
+    likes = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
     url_identifier = models.SlugField(max_length=255, unique=True, blank=True)
 
     def __str__(self):

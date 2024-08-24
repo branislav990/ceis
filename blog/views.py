@@ -26,12 +26,12 @@ class BlogPostDetailView(DetailView):
         context['comments'] = Comment.objects.filter(blog_post=self.object).order_by('-created_on')
 
         # Initialize "name" and "email" fields based on the cookies
-        name = self.request.COOKIES.get('blog_comment_name', '')
-        email = self.request.COOKIES.get('blog_comment_email', '')
+        name = self.request.COOKIES.get('ceis_blog_comment_name', '')
+        email = self.request.COOKIES.get('ceis_blog_comment_email', '')
 
         if not self.request.user.is_authenticated:
             # Checking if post has already been liked by the reader
-            liked_posts = self.request.COOKIES.get('liked_blog_posts', '').split(',')
+            liked_posts = self.request.COOKIES.get('ceis_liked_blog_posts', '').split(',')
             context['liked'] = str(self.object.pk) in liked_posts
 
             # Setting the reader's name and email based on whether they have already commented on the post
@@ -75,8 +75,8 @@ class BlogPostDetailView(DetailView):
 
             # Set predefined comment form values for name and email for non-authenticated readers if stored in cookies
             if not self.request.user.is_authenticated:
-                name = self.request.COOKIES.get('blog_comment_name', '')
-                email = self.request.COOKIES.get('blog_comment_email', '')
+                name = self.request.COOKIES.get('ceis_blog_comment_name', '')
+                email = self.request.COOKIES.get('ceis_blog_comment_email', '')
                 comment_form = CommentForm(initial={'name': name, 'email': email})
 
             # messages.success(request, 'Komentar uspešno dodat')
@@ -87,15 +87,17 @@ class BlogPostDetailView(DetailView):
             # Set name and email cookie values for readers who comment for the first time
             if not self.request.user.is_authenticated:
                 if 'blog_comment_name' not in request.COOKIES:
-                    response.set_cookie('blog_comment_name', request.POST['name'], max_age=157_784_760)
+                    response.set_cookie('ceis_blog_comment_name', request.POST['name'], max_age=157_784_760)
                 if 'blog_comment_email' not in request.COOKIES:
-                    response.set_cookie('blog_comment_email', request.POST['email'], max_age=157_784_760)
+                    response.set_cookie('ceis_blog_comment_email', request.POST['email'], max_age=157_784_760)
 
             return response
 
         else:
             comments = Comment.objects.filter(blog_post=self.object).order_by('-created_on')
-            ctx = {'comments': comments, 'comment_form': form}
+            ctx = self.get_context_data(object=self.object)
+            ctx['comments'] = comments
+            ctx['comment_form'] = form
             return render(request, 'blog/partials/comment_section.html', ctx)
 
 
@@ -105,33 +107,34 @@ def like(request, post_pk):
     blogpost.likes += 1
     blogpost.save(update_fields=['likes'])
 
-    liked_posts_list = request.COOKIES.get('liked_blog_posts', '')
+    liked_posts_list = request.COOKIES.get('ceis_liked_blog_posts', '')
     liked_posts_list = liked_posts_list.split(',') if liked_posts_list else []
 
-    liked_posts_list.append(str(post_pk))
+    liked_posts_list.append(str(blogpost.url_identifier))
 
     liked_posts_str = ','.join(map(str, liked_posts_list))
 
     response = render(request, 'blog/partials/unlike.html', {'blogpost': blogpost})
-    response.set_cookie('liked_blog_posts', liked_posts_str, max_age=157_784_760)
+    response.set_cookie('ceis_liked_blog_posts', liked_posts_str, max_age=157_784_760)
     return response
 
 
 @csrf_exempt
 def unlike(request, post_pk):
     blogpost = get_object_or_404(BlogPost, pk=post_pk)
-    blogpost.likes -= 1
-    blogpost.save(update_fields=['likes'])
+    if blogpost.likes > 0:
+        blogpost.likes -= 1
+        blogpost.save(update_fields=['likes'])
 
-    liked_posts_list = request.COOKIES.get('liked_blog_posts', '')
+    liked_posts_list = request.COOKIES.get('ceis_liked_blog_posts', '')
     liked_posts_list = liked_posts_list.split(',') if liked_posts_list else []
 
-    liked_posts_list.remove(str(post_pk))
+    liked_posts_list.remove(str(blogpost.url_identifier))
 
     liked_posts_str = ','.join(map(str, liked_posts_list))
 
     response = render(request, 'blog/partials/like.html', {'blogpost': blogpost})
-    response.set_cookie('liked_blog_posts', liked_posts_str, max_age=157_784_760)
+    response.set_cookie('ceis_liked_blog_posts', liked_posts_str, max_age=157_784_760)
     return response
 
 

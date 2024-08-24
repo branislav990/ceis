@@ -1,5 +1,5 @@
 {% load custom_filters %}
-<form hx-post="{{ request.path }}"
+<form hx-post="{% url 'blog:blog-post-detail' blogpost.url_identifier %}"
       hx-target="#comment-section"
       hx-swap="innerHTML"
       id="comment-form"
@@ -93,11 +93,11 @@
 
 
 
-{#<script>#}
-{#    document.addEventListener('htmx:afterSwap', () => {#}
-{#        const message = document.getElementById('msg');#}
-{#        setTimeout(() => {#}
-{#            message.style.display = 'none';#}
-{#        }, 3000);#}
-{#    });#}
-{#</script>#}
+<script>
+    document.addEventListener('htmx:afterSwap', () => {
+        const message = document.getElementById('msg');
+        setTimeout(() => {
+            message.style.display = 'none';
+        }, 3000);
+    });
+</script>

@@ -17,7 +17,7 @@
             <meta property="og:title" content="Caribrodski ekološki informacioni sistem">
             <meta property="og:type" content="website">
             <meta property="og:url" content="https://ceis.pythonanywhere.com">
-            <meta property="og:image" content="{% static 'images/ceis_og.jpg' %}">
+            <meta property="og:image" content="{% static 'images/ceis-og-main.png' %}">
         {% endblock %}
         
 
@@ -27,7 +27,7 @@
             {% endblock %}
         </title>
 
-        <link rel="icon" type="image/png" href="{% static 'images/favicon_ceis.png' %}">
+        <link rel="icon" type="image/png" href="{% static 'images/ceis_favicon.png' %}">
     
         {#    HTMX    #}
         <script src="https://unpkg.com/htmx.org@1.9.12/dist/htmx.js" integrity="sha384-qbtR4rS9RrUMECUWDWM2+YGgN3U4V4ZncZ0BvUcg9FGct0jqXz3PUdVpU1p0yrXS" crossorigin="anonymous"></script>
@@ -37,11 +37,11 @@
         <link rel="stylesheet" href="{% static 'blog/styles/blog_detail.css' %}">
         <link rel="stylesheet" href="{% static 'blog/styles/blog_list.css' %}">
     
-        <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Buenard' rel='stylesheet'>
+{#        <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet'>#}
+{#        <link href='https://fonts.googleapis.com/css?family=Buenard' rel='stylesheet'>#}
         <link href='https://fonts.googleapis.com/css?family=Madimi One' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Arima' rel='stylesheet'>
-        <link href='https://fonts.googleapis.com/css?family=Abhaya Libre' rel='stylesheet'>
+{#        <link href='https://fonts.googleapis.com/css?family=Abhaya Libre' rel='stylesheet'>#}
         <link href='https://fonts.googleapis.com/css?family=Labrada' rel='stylesheet'>
     </head>
     <body>
@@ -53,10 +53,26 @@
                     </a>
                     <ul class="nav-menu">
                         <li class="nav-item">
-                            <a href="{% url 'blog:blog-post-list' %}" class="nav-link nav-link-active">Blog</a>
+                            {% url 'blog:blog-post-list' as blog_url %}
+                            <a 
+                                    href="{% url 'blog:blog-post-list' %}" 
+                                    class="nav-link nav-link-active 
+                                        {% if request.path == blog_url %}
+                                            nav-link-selected
+                                        {% endif %}">
+                                Blog
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <span class="nav-link nav-link-inactive">Biblioteka</span>
+                            {% url 'booklibrary:book-library' as library_url %}
+                            <a 
+                                href="{% url 'booklibrary:book-library' %}" 
+                                class="nav-link nav-link-active 
+                                    {% if request.path == library_url %}
+                                        nav-link-selected
+                                    {% endif %}">
+                                Biblioteka
+                            </a>
                         </li>
 
                         <li class="nav-item">
@@ -89,28 +105,29 @@
             </footer>
         </div>
 
+        <script src="{% static 'js/hamburger.js' %}"></script>
 
-        <script>
-           const hamburger = document.querySelector(".hamburger");
-            const navMenu = document.querySelector(".nav-menu");
-            
-            hamburger.addEventListener("click", mobileMenu);
-            
-            function mobileMenu() {
-                hamburger.classList.toggle("active");
-                navMenu.classList.toggle("active");
-            }
-            
-            
-            
-            const navLink = document.querySelectorAll(".nav-link");
-
-            navLink.forEach(n => n.addEventListener("click", closeMenu));
-            
-            function closeMenu() {
-                hamburger.classList.remove("active");
-                navMenu.classList.remove("active");
-}
-        </script>
+{#        <script>#}
+{#            const hamburger = document.querySelector(".hamburger");#}
+{#            const navMenu = document.querySelector(".nav-menu");#}
+{#            #}
+{#            hamburger.addEventListener("click", mobileMenu);#}
+{#            #}
+{#            function mobileMenu() {#}
+{#                hamburger.classList.toggle("active");#}
+{#                navMenu.classList.toggle("active");#}
+{#            }#}
+{#            #}
+{#            #}
+{#            #}
+{#            const navLink = document.querySelectorAll(".nav-link");#}
+{##}
+{#            navLink.forEach(n => n.addEventListener("click", closeMenu));#}
+{#            #}
+{#            function closeMenu() {#}
+{#                hamburger.classList.remove("active");#}
+{#                navMenu.classList.remove("active");#}
+{#            }#}
+{#        </script>#}
     </body>
 </html>

@@ -1,32 +1,32 @@
-<li>
-    <strong>
-        {% if comment.author %}
-            {{ comment.author.username }}
-        {% else %}
-            {{ comment.name }}
-        {% endif %}
-    </strong>
-    (
-    {% if comment.author %}
-        {{ comment.author.email }}
-    {% else %}
-        {{ comment.email }}
-    {% endif %}
-    ): {{ comment.content }}
-    <small>{{ comment.created_at }}</small>
-
-    <form method="post" action="{% url 'blog:blog-post-detail' comment.blog_post.id %}">
-        {% csrf_token %}
-        <input type="hidden" name="parent_id" value="{{ comment.id }}">
-        {{ form.as_p }}
-        <button type="submit">Reply</button>
-    </form>
-
-    {% if comment.replies.exists %}
-        <ul>
-            {% for reply in comment.replies.all %}
-                {% include 'blog/comment.html' with comment=reply %}
-            {% endfor %}
-        </ul>
-    {% endif %}
-</li>
+{#<li>#}
+{#    <strong>#}
+{#        {% if comment.author %}#}
+{#            {{ comment.author.username }}#}
+{#        {% else %}#}
+{#            {{ comment.name }}#}
+{#        {% endif %}#}
+{#    </strong>#}
+{#    (#}
+{#    {% if comment.author %}#}
+{#        {{ comment.author.email }}#}
+{#    {% else %}#}
+{#        {{ comment.email }}#}
+{#    {% endif %}#}
+{#    ): {{ comment.content }}#}
+{#    <small>{{ comment.created_at }}</small>#}
+{##}
+{#    <form method="post" action="{% url 'blog:blog-post-detail' comment.blog_post.id %}">#}
+{#        {% csrf_token %}#}
+{#        <input type="hidden" name="parent_id" value="{{ comment.id }}">#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit">Reply</button>#}
+{#    </form>#}
+{##}
+{#    {% if comment.replies.exists %}#}
+{#        <ul>#}
+{#            {% for reply in comment.replies.all %}#}
+{#                {% include 'blog/comment.html' with comment=reply %}#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    {% endif %}#}
+{#</li>#}

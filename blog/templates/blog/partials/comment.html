@@ -2,17 +2,17 @@
 {#    <p>{{ comment.content }}</p>#}
 {#    <small>{{ comment.created_on.day }}.{{ comment.created_on.month }}.{{ comment.created_on.year }}.</small>#}
 {#</div>#}
-
-{% if comments %}
-    <div id="komentari">
-        {% for comment in comments %}
-            <div>
-                <p>{{ comment.content }}</p>
-                <small>{{ comment.created_on.day }}.{{ comment.created_on.month }}.{{ comment.created_on.year }}.</small>
-            </div>
-        {% endfor %}
-    </div>
-
-{% else %}
-    <p>Nema komentara</p>
-{% endif %}
+{##}
+{#{% if comments %}#}
+{#    <div id="komentari">#}
+{#        {% for comment in comments %}#}
+{#            <div>#}
+{#                <p>{{ comment.content }}</p>#}
+{#                <small>{{ comment.created_on.day }}.{{ comment.created_on.month }}.{{ comment.created_on.year }}.</small>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{##}
+{#{% else %}#}
+{#    <p>Nema komentara</p>#}
+{#{% endif %}#}

@@ -1,6 +1,20 @@
 {% extends "base.html" %}
+
+{% load static %}
+
+{% block meta %}
+    <meta name="description"
+      content="Priče i avanture iz prirode Dimitrovgrada i okoline.">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Blog - Caribrodski Ekološki Informacioni Sistem">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% url 'blog:blog-post-list' %}">
+    <meta property="og:image" content="{% static 'blog/images/rakce.jpg' %}">
+{% endblock %}
+
 {% load custom_filters %}
-{% block title %}CEIS Blog{% endblock %}
+{% block title %}Blog - CEIS{% endblock %}
 
 {% block content %}
     <div class="blog-list-header">

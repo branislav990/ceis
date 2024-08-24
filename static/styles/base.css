@@ -57,7 +57,7 @@
     font-weight: 400;
     color: #E5D894;
     text-decoration: none;
-    transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 }
 
 .nav-link-inactive {
@@ -67,6 +67,14 @@
 
 .nav-link-active:hover {
     color: #B1945B;
+}
+
+.nav-link-selected {
+    border-bottom: 3px solid #E5D894;
+}
+
+.nav-link-selected:hover {
+    border-bottom-color: #B1945B;
 }
 
 @media only screen and (max-width: 1200px) {

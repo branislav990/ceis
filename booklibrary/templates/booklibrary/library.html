@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block meta %}
+{#    <link rel="manifest" href="{% static 'booklibrary/manifest.json' %}"/>#}
+    <script defer="defer" src="{% static 'booklibrary/js/main.0b735a21.js' %}"></script>
+    <link href="{% static "booklibrary/styles/main.cf5507a3.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div id="library-root"></div>
+{% endblock %}
