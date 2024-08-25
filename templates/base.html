@@ -57,7 +57,7 @@
                             <a 
                                     href="{% url 'blog:blog-post-list' %}" 
                                     class="nav-link nav-link-active 
-                                        {% if request.path == blog_url %}
+                                        {% if blog_url in request.path %}
                                             nav-link-selected
                                         {% endif %}">
                                 Blog
@@ -68,7 +68,7 @@
                             <a 
                                 href="{% url 'booklibrary:book-library' %}" 
                                 class="nav-link nav-link-active 
-                                    {% if request.path == library_url %}
+                                    {% if library_url in request.path %}
                                         nav-link-selected
                                     {% endif %}">
                                 Biblioteka
