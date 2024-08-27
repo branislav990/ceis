@@ -1,0 +1,102 @@
+/* .author-form {
+    width: 92%;
+    padding-top: 1em;
+    text-align: center;
+    padding-right: 10em;
+}
+
+.author-input {
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border-radius: 0.3em;
+    width: 100%;
+
+}
+
+.author-btn {
+    width: 100%;
+    height: 2.5em;
+    background-color: #245D42;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-inline: auto;
+    box-sizing: border-box;
+    border: none;
+} */
+
+
+
+
+/* Ensure consistent box-sizing for all elements */
+/* *,
+*::before,
+*::after {
+    box-sizing: border-box;
+} */
+
+.author-form {
+    width: 100%; /* Use full width of parent container */
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 0; /* Remove any padding causing overflow */
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    align-items: stretch; /* Ensure inputs and button stretch to full width */
+    gap: 1.3em; /* Use gap for consistent spacing */
+    max-width: 100%; /* Prevent overflow */
+}
+
+.author-input {
+    padding: 0.4em;
+    padding-left: 0.7em;
+    border-radius: 0.3em;
+    font-family: "Barlow";
+    font-size: 1.2em;
+    width: 100%; /* Full width of container */
+    max-width: 100%; /* Ensure it doesn't exceed parent width */
+    box-sizing: border-box; /* Include padding in width */
+    margin-bottom: 0; /* Remove bottom margin to use gap */
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease-in-out;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 3px 1px black;
+    }
+}
+
+.author-input::placeholder {
+    font-family: "Barlow";
+    font-size: 1em;
+    opacity: 0.9;
+}
+
+.author-btn {
+    width: 100%; /* Match width of inputs */
+    /* height: 2.5em; */
+    background-color: #AF4D00;
+    color: white;
+    font-family: "Arima";
+    font-weight: bold;
+    font-size: 1.3em;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    box-sizing: border-box; /* Include padding/border in width */
+    border: none;
+    align-self: stretch; /* Stretch button to full width */
+    /* border-radius: 0.3em; */
+    box-shadow: 0 0 4px 0 #AF4D00;
+    padding: 0.2em;
+    margin-top: 0.5em;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+    &:hover {
+        background-color: rgba(175, 77, 0, 0.9);
+    }
+    
+    &:active {
+        transform: scale(0.98);
+    }
+}

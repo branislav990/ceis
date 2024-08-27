@@ -1,0 +1,229 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.library-wrapper {
+    max-width: 1200px;
+    width: 80%;
+    margin-inline: auto;
+}
+
+.loading-wrapper-global {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.library-full {
+    margin-top: 1em;
+}
+
+.library-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.library-filter-wrapper {
+    width: 27%;
+}
+
+.literature-results-wrapper {
+    width: 70%;
+    height: 170vh;
+    position: relative;
+}
+
+.publication-list {
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+
+.loading-wrapper-local {
+    position: absolute;
+    top: 6em;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.searchBar-sorting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.load-more-btn {
+    display: flex;
+    align-items: center;
+    /* background-color: #B89D63; */
+    background-color: #4c9dca;
+    color: white;
+    border: none;
+    box-shadow: none;
+    padding: 0.9em;
+    padding-inline: 1.3em;
+    margin-bottom: 1em;
+    text-align: center;
+    cursor: pointer;
+    /* border-radius: 0.2em; */
+    font-weight: bold;
+    font-family: "Barlow";
+    font-weight: bold;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    box-shadow: 0 0 4px 0 #4c9dca;
+}
+
+.load-more-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.load-more-text {
+    margin-right: 0.2em;
+}
+
+.publications-label {
+    font-size: 1.1em;
+    font-family: "Barlow";
+    border-bottom: 1px solid #dcdfe4;
+    padding-bottom: 0.5em;
+    margin-top: 2em;
+}
+
+.blog-list-header {
+    box-shadow: 0 5px 4px -2px rgba(24,39,75,.12),0 5px 4px -2px rgba(24,39,75,.08);
+}
+
+.blog-list-header blockquote {
+    background-color: #F2F5F7;
+    padding: 1em;
+    padding-top: 0.01em;
+    padding-bottom: 0.01em;
+    margin-top: 0;
+    margin-bottom: 2.5em;
+    margin-inline: 0;
+    font-family: 'Arima';
+}
+
+.blog-list-header blockquote p {
+    max-width: 1200px;
+    padding-inline: 10%;
+    text-align: center;
+    margin-inline: auto;
+}
+
+.error-wrapper-global {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error-happened {
+    margin-bottom: 0.5em;
+    font-family: "Arima";
+}
+
+.error-try-again {
+    margin-top: 0;
+    font-family: "Arima";
+}
+
+.error-refresh {
+    justify-self: center;
+    cursor: pointer;
+}
+
+.error-wrapper-local {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2em;
+}
+
+@media only screen and (max-width: 1260px) {
+    .library-filter-wrapper {
+        width: 29%;
+    }
+
+    .literature-results-wrapper {
+        width: 68%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .library-wrapper {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .library-wrapper {
+        width: 93%;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .library-filter-wrapper {
+        width: 30%;
+    }
+
+    .literature-results-wrapper {
+        width: 67%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .library-container {
+        flex-direction: column;
+    }
+
+    .library-filter-wrapper,
+    .literature-results-wrapper {
+        width: 100%;
+    }
+
+    .literature-results-wrapper {
+        width: 100%;
+        min-height: 300px;
+    }
+
+    .loading-wrapper-local {
+        margin-inline: auto;
+        margin-top: 3em;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .searchBar-sorting {
+        flex-direction: column;
+    }
+
+    .loading-wrapper-local {
+        margin-top: 5em;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .publication-list-info {
+        margin-left: 1.5em;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .loading-wrapper-local {
+        margin-top: 5em;
+    }
+}

@@ -1,0 +1,22 @@
+.sorting {
+    display: flex;
+    align-items: center;
+}
+
+.sorting-label {
+    white-space: nowrap;
+    font-family: "Barlow";
+    font-size: 0.95em;
+    margin-left: 2em;
+}
+
+@media only screen and (max-width: 900px) {
+    .sorting {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .sorting-label {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,23 @@
+.clearFilters {
+    cursor: pointer;
+    margin-top: 0;
+    font-family: "Cantarell";
+    font-size: 0.9em;
+    letter-spacing: 0.03em;
+    /* color: #af4d00; */
+    opacity: 0.6;
+    text-shadow: 0 0 1px #521635;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    width: fit-content;
+
+    &:hover {
+        transform: scale(1.03);
+        opacity: 1;
+    }
+}
+
+.filter-header {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-family: "Barlow";
+}

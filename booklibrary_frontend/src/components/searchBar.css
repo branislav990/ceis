@@ -1,0 +1,205 @@
+.search-bar-wrapper {
+    position: relative;
+    display: flex;
+    width: 60%;
+    /* justify-content: flex-end; */
+}
+
+.search-input-button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    min-width: 11em;
+    transition: width 0.3s ease;
+}
+
+.search-input-button-wrapper.focused {
+    width: 100%;
+}
+
+.search-input {
+    font-family: "Barlow";
+    font-size: 1.2em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: none;
+    border-top-left-radius: 0.4em;
+    border-bottom-left-radius: 0.4em;
+    outline: none;
+    width: 100%;
+    padding-inline: 1em;
+    padding-left: 0.7em;
+    background-color: #F2F5F7;
+    transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+    &:focus {
+        /* border-right: none; */
+        /* border: none; */
+        border: 1px solid rgba(36, 93, 66, 0.8);
+        border-right: none;
+        /* box-shadow: 0 0 1px 1px #245D42 inset; */
+        background-color: white;
+    }
+}
+
+.search-input::placeholder {
+    font-family: "Barlow";
+    font-size: 1em;
+}
+
+.search-button {
+    background-color: #245d42;
+    box-shadow: none;
+    border: none;
+    padding: 0.7em;
+    padding-bottom: 0.4em;
+    border-top-right-radius: 0.4em;
+    border-bottom-right-radius: 0.4em;
+    cursor: pointer;
+}
+
+/* .dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: -0.3em;
+    right: -0.3em;
+    z-index: 1000;
+    background-color: #F2F5F7;
+    border-radius: 0.5em;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.dropdown-list.populated {
+    display: block;
+}
+
+.dropdown-list-item {
+    cursor: pointer;
+    list-style-type: none;
+    margin: 0;
+    padding: 0.5em 1em; 
+    box-sizing: border-box;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-list-item:hover,
+.dropdown-list-item:focus,
+.dropdown-list-item.focused {
+    background-color: rgba(229, 216, 148, 0.8);
+    outline: none;
+}
+
+.dropdown-list-item:last-child {
+    margin-bottom: 0.8em;
+}
+
+.dropdown-list-item:first-child {
+    border-top: 1px solid #ddd;
+    margin-top: 0.8em;
+}
+
+.dropdown-list-title {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.et-al {
+    font-style: italic;
+} */
+
+
+
+
+
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: -0.3em;
+    right: -0.3em;
+    z-index: 1000;
+    background-color: #F2F5F7;
+    border-radius: 0.5em;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.dropdown-list-item {
+    font-family: "Barlow";
+    cursor: pointer;
+    list-style-type: none;
+    margin: 0;
+    padding: 0.5em 1em; 
+    box-sizing: border-box;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-list-item.hovered,
+.dropdown-list-item.focused {
+    background-color: #e5d894cc;
+    outline: none;
+}
+
+.dropdown-list-item:last-child {
+    margin-bottom: 0.8em;
+}
+
+.dropdown-list-item:first-child {
+    border-top: 1px solid #ddd;
+    margin-top: 0.8em;
+}
+
+.dropdown-list-title {
+    font-size: 1.1em;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 0.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-list-author {
+    margin: 0;
+    padding: 0;
+    opacity: 0.6;
+}
+
+.et-al {
+    font-style: italic;
+}
+
+.dropdown-load-extra {
+    display: flex;
+    justify-content: center;
+    border-bottom: none;
+    color: #00635D;
+}
+
+.dropdown-load-extra:hover .dropdown-load-extra-link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+.dropdown-load-extra-info {
+    cursor: default;
+}
+
+@media only screen and (max-width: 900px) {
+    .search-bar-wrapper {
+        width: 100%;
+        margin-bottom: 1.5em;
+    }
+}
