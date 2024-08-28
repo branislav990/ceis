@@ -5,4 +5,4 @@
 This website is built with Django on the backend.  
 There are two applications so far.  
 The blog application is using some vanilla JavaScript on the frontend, and some HTMX.  
-The booklibrary application is built in React.
+The booklibrary application frontend is built in React.
