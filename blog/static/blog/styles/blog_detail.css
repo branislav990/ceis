@@ -333,7 +333,9 @@ html {
 
 .no-comment {
     font-size: 1.2em;
-    margin-top: 1.9em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    text-align: center;
 }
 
 .error-msg {
